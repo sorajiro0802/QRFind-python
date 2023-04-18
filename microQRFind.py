@@ -20,6 +20,7 @@ def main():
             
             for mqr in detector.detections:
                 print(mqr.message)
+                print(getDiagonalPoints(mqr.bounds.convert_tuple()))
         
             cv2.imshow(window_name, image)
             
@@ -28,6 +29,10 @@ def main():
     
     cv2.destroyWindow(window_name)
 
+def getDiagonalPoints(corner):
+    # points4 have 4 points of corners of mQRcode.
+    # this function returns points of LeftUp and RightDown
+    return (corner[0], corner[2])
 
 if __name__=="__main__":
     main()
