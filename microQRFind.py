@@ -19,7 +19,11 @@ def main():
             detector.detect(boof_img)
             
             for mqr in detector.detections:
-                print(mqr.message)
+                info = mqr.message
+                points = mqr.bounds.convert_tuple()
+                points = [(int(i), int(j)) for i, j in points] # LeftUp, RightUp, RightDown, LeftDown <- int
+                
+                image = cv2.polylines(image, [np.array(points)], True, (255, 0, 0), 8)
         
             cv2.imshow(window_name, image)
             
