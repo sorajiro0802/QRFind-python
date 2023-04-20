@@ -13,22 +13,6 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 qcd = cv2.QRCodeDetector()
 video = cv2.VideoCapture(camera_id)
 
-# # -----------------  main処理-------------------------
-# # 1.retval : QRコードの検出。True or False
-# # 2.decoded_info : QRコードに格納された文字列のタプル。検出できてもデコードできなかった場合は空文字となる (tuble)
-# # 3.points : 検出できたQRコードの四隅の座標を表す (ndarray)
-# # 4.straight_qrcode : QRコードそのものの2次元画像(ndarray)
-# retval, decoded_info, points, straight_qrcode = qcd.detectAndDecodeMulti(img)
-
-# # showing straight_qrcode test
-# # plt.imshow(cv2.cvtColor(straight_qrcode[1], cv2.COLOR_BGR2RGB))
-# # plt.show()
-# # ------------------------------------------
-# img = cv2.polylines(img, points.astype(int), True, (0, 255, 0), 3)
-# for i, j in zip(decoded_info, points):
-#     img = cv2.putText(img, i, j[0].astype(int),
-#                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
-
 while True:
     tick = cv2.getTickCount()
     ret, frame = video.read()
