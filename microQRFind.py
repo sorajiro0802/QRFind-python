@@ -4,7 +4,7 @@ import cv2
 
 
 def main():
-    camera_id = 0
+    camera_id = 1
     window_name = "Micro QR Finder"
     font = cv2.FONT_HERSHEY_SIMPLEX
     cap = cv2.VideoCapture(camera_id)
@@ -23,7 +23,7 @@ def main():
                 points = mqr.bounds.convert_tuple()
                 points = [(int(i), int(j)) for i, j in points] # LeftUp, RightUp, RightDown, LeftDown <- int
                 
-                image = cv2.polylines(image, [np.array(points)], True, (255, 0, 0), 8)
+                image = cv2.polylines(image, [np.array(points)], True, (255, 0, 0), 5)
         
             cv2.imshow(window_name, image)
             
