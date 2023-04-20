@@ -5,13 +5,13 @@ QRコードをリアルタイムで読み、格納情報されたを表示する
 ## USAGE 
 ### - Start -
 * QRCode Reader  
-``` user@macbook:~$ python qrFind.py ```
+```user@macbook:~$ python qrFind.py ```
 
 * microQRCode Reader  
-``` user@macbook:~$ python microQRFind.py``` 
+```user@macbook:~$ python microQRFind.py``` 
 ### - Example -
-<img width=292px alt="qrFind.py" src="data/QR_impression.png"></img>
-<img width=300px alt="microQRFind.py" src="data/mQR_impression.png"></img>
+<img width=348px alt="qrFind.py" src="data/QR_impression.png"></img>
+<img width=350px alt="microQRFind.py" src="data/mQR_impression.png"></img>
 ### - Stop -
 #### common: Press `Esc button`
 ---
