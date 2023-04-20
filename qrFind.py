@@ -4,7 +4,6 @@
 
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
 
 # initial
 camera_id = 1  # usually 0 indicate facial camera of PC
