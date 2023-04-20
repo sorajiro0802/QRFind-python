@@ -4,7 +4,7 @@ import cv2
 
 
 def main():
-    camera_id = 1
+    camera_id = 0
     window_name = "Micro QR Finder"
     font = cv2.FONT_HERSHEY_SIMPLEX
     color = (255, 0, 0) # BGR -> Blue

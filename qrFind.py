@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 
 # initial
-camera_id = 1  # usually 0 indicate facial camera of PC
+camera_id = 0  # usually 0 indicate facial camera of PC
 window_name = "OpenCV QR Code"
 font = cv2.FONT_HERSHEY_SIMPLEX
 qcd = cv2.QRCodeDetector()
