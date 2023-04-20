@@ -29,7 +29,7 @@ def main():
             cv2.imshow(window_name, image)
         
         # when Esp pressed
-        if cv2.waitKey(5)  & 0xFF==ord('q'):
+        if cv2.waitKey(5)  & 0xFF==27:
             break
     
     cv2.destroyWindow(window_name)
