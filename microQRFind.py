@@ -7,6 +7,7 @@ def main():
     camera_id = 1
     window_name = "Micro QR Finder"
     font = cv2.FONT_HERSHEY_SIMPLEX
+    color = (255, 0, 0) # BGR -> Blue
     cap = cv2.VideoCapture(camera_id)
     # prepair microQR detector
     detector = pb.FactoryFiducial(np.uint8).microqr()
@@ -24,14 +25,14 @@ def main():
                 points = mqr.bounds.convert_tuple()
                 points = [(int(i), int(j)) for i, j in points] # LeftUp, RightUp, RightDown, LeftDown <- int
                 # line enclose mQRCode
-                image = cv2.polylines(image, [np.array(points)], True, (255, 0, 0), 5)
+                image = cv2.polylines(image, [np.array(points)], True, color, 5)
                 # show decoded infomation onto its microQR
                 image = cv2.putText(img=image,
                                     text=info,
                                     org=(points[0]),
                                     fontFace=font,
                                     fontScale=0.5,
-                                    color=(255,0,0),
+                                    color=color,
                                     thickness=2,
                                     lineType=cv2.LINE_AA)
         
