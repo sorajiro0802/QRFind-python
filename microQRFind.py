@@ -15,6 +15,7 @@ def main():
         ret, image = cap.read()
         if ret:
             image_mono = cv2.cvtColor(np.uint8(image), cv2.COLOR_BGR2GRAY)
+            # convert image class to match pyboof
             boof_img = pb.ndarray_to_boof(image_mono)
             detector.detect(boof_img)
             
@@ -22,11 +23,12 @@ def main():
                 info = mqr.message
                 points = mqr.bounds.convert_tuple()
                 points = [(int(i), int(j)) for i, j in points] # LeftUp, RightUp, RightDown, LeftDown <- int
-                
+                # line enclose mQRCode
                 image = cv2.polylines(image, [np.array(points)], True, (255, 0, 0), 5)
         
             cv2.imshow(window_name, image)
-            
+        
+        # when Esp pressed
         if cv2.waitKey(5)  & 0xFF==ord('q'):
             break
     
