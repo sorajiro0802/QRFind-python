@@ -50,8 +50,8 @@ while True:
         cv2.putText(frame, f"{np.floor(fps)}fps", (60, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 2, cv2.LINE_AA)
         elapsed_time = (cv2.getTickCount() - tick) / cv2.getTickFrequency()
         cv2.imshow(window_name, frame)
-
-    if cv2.waitKey(5) & 0xFF==ord('q'):
+    # when ESC button pressed, the window break
+    if cv2.waitKey(5) & 0xFF==27:
         break
 
 cv2.destroyWindow(window_name)
