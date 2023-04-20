@@ -7,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # initial
-camera_id = 0  # usually 0 indicate facial camera of PC
+camera_id = 1  # usually 0 indicate facial camera of PC
 window_name = "OpenCV QR Code"
 font = cv2.FONT_HERSHEY_SIMPLEX
 qcd = cv2.QRCodeDetector()
@@ -21,14 +21,21 @@ while True:
         if ret_qr:
             for i, j in zip(decoded_info, points):
                 if i:
-                    print(i)
                     color = (0, 255, 0)
                 else:
                     color = (0, 0, 255)
                 frame = cv2.polylines(frame, [j.astype(int)], True, color, 8)
+                frame = cv2.putText(img=frame,
+                    text=str(i),
+                    org=([int(j[0][k]-10) for k in range(len(j[0]))]),
+                    fontFace=font,
+                    fontScale=0.5,
+                    color=color,
+                    thickness=2,
+                    lineType=cv2.LINE_AA)
         retval, points = qcd.detect(frame)
-        if retval:
-            print(points)
+        # if retval:
+        #     print(points)
         # display FPS
         fps = cv2.getTickFrequency() / (cv2.getTickCount() - tick)
         cv2.putText(frame, f"{np.floor(fps)}fps", (60, 60), cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 2, cv2.LINE_AA)
