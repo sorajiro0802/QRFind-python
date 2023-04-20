@@ -25,6 +25,15 @@ def main():
                 points = [(int(i), int(j)) for i, j in points] # LeftUp, RightUp, RightDown, LeftDown <- int
                 # line enclose mQRCode
                 image = cv2.polylines(image, [np.array(points)], True, (255, 0, 0), 5)
+                # show decoded infomation onto its microQR
+                image = cv2.putText(img=image,
+                                    text=info,
+                                    org=(points[0]),
+                                    fontFace=font,
+                                    fontScale=0.5,
+                                    color=(255,0,0),
+                                    thickness=2,
+                                    lineType=cv2.LINE_AA)
         
             cv2.imshow(window_name, image)
         
