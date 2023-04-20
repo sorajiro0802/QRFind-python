@@ -1,10 +1,26 @@
 # QRFind-python
-QRコードをリアルタイムで読む
+QRコードをリアルタイムで読み、格納情報されたを表示するプログラム
 
-## USAGE
-``` user@mac% python qrFind.py ```
+---
+## USAGE 
+### - Start -
+* QRCode Reader  
+``` user@macbook:~$ python qrFind.py ```
 
+* microQRCode Reader  
+``` user@macbook:~$ python microQRFind.py``` 
+### - Example -
+<img width=292px alt="qrFind.py" src="data/QR_impression.png"></img>
+<img width=300px alt="microQRFind.py" src="data/mQR_impression.png"></img>
+### - Stop -
+#### common: Press `Esc button`
+---
 ## Libraries
-* Numpy 1.23.0
-* Matplotlib  3.5.2
-* OpenCV-Python 3.4.18.65
+* ### Common
+  * Numpy 1.23.0
+  * OpenCV-Python 3.4.18.65
+* microQR reader
+  * PyBoof
+    *   To install pyboof witu using pip, `javac` is essential.  
+  Useful information is below.
+	> https://github.com/lessthanoptimal/PyBoof
