@@ -21,6 +21,6 @@ QRコードをリアルタイムで読み、格納された情報を表示する
   * OpenCV-Python 3.4.18.65
 * microQR reader
   * PyBoof
-    *   To install pyboof witu using pip, `javac` is essential.  
+    *   To install pyboof with using pip, `javac` is essential.  
   Useful information is below.
 	> https://github.com/lessthanoptimal/PyBoof
