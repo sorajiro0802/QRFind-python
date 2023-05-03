@@ -2,6 +2,7 @@ import sys
 import os
 import csv
 import datetime
+from glob import glob
 
 import numpy as np
 import pyboof as pb
@@ -12,11 +13,7 @@ def main():
     # dataDirPath = getFolderAbsPath(sys.argv)
     csv_name = f"imgQRInfo-{datetime.datetime.now().strftime('%Y%m%d-%H:%M:%S')}.csv"
     dataDirPath = getDirAbsPath(sys.argv)
-    saveDirName = "output"
-    saveDirdPath = f"{os.path.curdir}/{saveDirName}"
-    # make save Directory
-    if not os.path.exists(saveDirdPath):
-        os.makedirs(saveDirdPath)
+    csv_name = f"findmQR-{dataDirName}-{datetime.datetime.now().strftime('%Y%m%d-%H:%M:%S')}.csv"
 
     img_path = "./data/mQRArray_rotated.png" #* tmp img
     # select QR or microQR
