@@ -11,6 +11,7 @@ def main():
     #* feat add parser
     # dataDirPath = getFolderAbsPath(sys.argv)
     csv_name = f"imgQRInfo-{datetime.datetime.now().strftime('%Y%m%d-%H:%M:%S')}.csv"
+    dataDirPath = getDirAbsPath(sys.argv)
     saveDirName = "output"
     saveDirdPath = f"{os.path.curdir}/{saveDirName}"
     # make save Directory
@@ -24,8 +25,7 @@ def main():
     num, res = decodeQR(decorder, img_path)
     convertInfo2CSV(img_name, num, res, saveDirdPath, csv_name)
     
-    
-def getFolderAbsPath(cmd_arg):
+def getDirAbsPath(cmd_arg):
     # check command line arguments
     if len(cmd_arg) == 2:
         # check 
