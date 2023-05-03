@@ -81,6 +81,11 @@ def convertInfo2CSV(img_name, num, dict_, save_dir, save_name):
                 writeLine.append(y)
         writer.writerow(writeLine)
 
+def dirname(path):
+    if path[-1] == "/":
+        return path.split("/")[-2]
+    else:
+        return path.split("/")[-1]
 
 if __name__=="__main__":
     main()
