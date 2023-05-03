@@ -19,8 +19,8 @@ def main():
     decorder = pb.FactoryFiducial(np.uint8).microqr()
     # decorder = pb.FactoryFiducial(np.uint8).qrcode()
     # detect QRCode in directory images
-    for img_file in files:
-        print(f"Processing decord : {os.path.basename(img_file)}")
+    for img_file in sorted(files):
+        print(f"Processing decord :\t{os.path.basename(img_file)}")
         img_name = os.path.basename(img_file)
         num, res = decodeQR(decorder, img_file)
         convertInfo2CSV(img_name, num, res, dataDirPath, csv_name)
