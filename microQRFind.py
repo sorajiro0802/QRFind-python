@@ -11,6 +11,7 @@ def main():
     cap = cv2.VideoCapture(camera_id)
     # prepair microQR detector
     detector = pb.FactoryFiducial(np.uint8).microqr()
+    # detector = pb.FactoryFiducial(np.uint8).qrcode()
     
     while True:
         ret, image = cap.read()
