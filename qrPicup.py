@@ -6,7 +6,6 @@ from glob import glob
 
 import numpy as np
 import pyboof as pb
-import cv2
 
 def main():
     #* feat add parser
