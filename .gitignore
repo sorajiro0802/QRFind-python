@@ -3,4 +3,4 @@ venv
 .ipynb_checkpoints
 microQR_*
 .vscode
-output
+*.csv
