@@ -25,6 +25,7 @@ def main():
         num, res = decodeQR(decorder, img_file)
         convertInfo2CSV(img_name, num, res, dataDirPath, csv_name)
 
+
 def getFiles(dirPath, extension):
     jpegRobust = ["jpeg", "jpg", "JPEG", "JPG"]
     pngRobust = ["png", "PNG"]
@@ -80,7 +81,7 @@ def convertInfo2CSV(img_name, num, dict_, save_dir, save_name):
             for x, y in points:
                 writeLine.append(x)
                 writeLine.append(y)
-        print(writeLine)
+        print(f"\tFound:\t{writeLine}")
         writer.writerow(writeLine)
 
 def dirname(path):
