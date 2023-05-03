@@ -10,17 +10,21 @@ import cv2
 
 def main():
     #* feat add parser
-    # dataDirPath = getFolderAbsPath(sys.argv)
-    csv_name = f"imgQRInfo-{datetime.datetime.now().strftime('%Y%m%d-%H:%M:%S')}.csv"
     dataDirPath = getDirAbsPath(sys.argv)
+    imgFileExtension = "png"
+    files = getFiles(dataDirPath, imgFileExtension)
+    dataDirName = dirname(dataDirPath)
     csv_name = f"findmQR-{dataDirName}-{datetime.datetime.now().strftime('%Y%m%d-%H:%M:%S')}.csv"
 
-    img_path = "./data/mQRArray_rotated.png" #* tmp img
-    # select QR or microQR
     decorder = pb.FactoryFiducial(np.uint8).microqr()
-    img_name = os.path.basename(img_path)
-    num, res = decodeQR(decorder, img_path)
-    convertInfo2CSV(img_name, num, res, saveDirdPath, csv_name)
+    # decorder = pb.FactoryFiducial(np.uint8).qrcode()
+    # detect QRCode in directory images
+    for img_file in files:
+        print(f"Processing decord : {os.path.basename(img_file)}")
+        img_name = os.path.basename(img_file)
+        num, res = decodeQR(decorder, img_file)
+        convertInfo2CSV(img_name, num, res, dataDirPath, csv_name)
+
 def getFiles(dirPath, extension):
     jpegRobust = ["jpeg", "jpg", "JPEG", "JPG"]
     pngRobust = ["png", "PNG"]
@@ -65,7 +69,7 @@ def decodeQR(decorder, img_path) -> dict:
 def convertInfo2CSV(img_name, num, dict_, save_dir, save_name):
     # format : <imgFileName>, <number of detected QRCode>, (x0,y0),(x1,y1),(x2,y2),(x3,y3), <decode string>, ...
     save_path = f"{save_dir}/{save_name}"
-    with open(save_path, "w") as f:
+    with open(save_path, "a") as f:
         writer = csv.writer(f)
         writeLine = []
         writeLine.append(img_name)  # imgFileName
@@ -76,6 +80,7 @@ def convertInfo2CSV(img_name, num, dict_, save_dir, save_name):
             for x, y in points:
                 writeLine.append(x)
                 writeLine.append(y)
+        print(writeLine)
         writer.writerow(writeLine)
 
 def dirname(path):
