@@ -1,6 +1,7 @@
 import sys
 import os
 import csv
+import datetime
 
 import numpy as np
 import pyboof as pb
@@ -8,14 +9,10 @@ import cv2
 
 def main():
     #* feat add parser
-    dataFoldPath = getFolderAbsPath(sys.argv)
-    print(dataFoldPath)
-    saveFoldName = "output"
-    saveFoldPath = f"{os.path.curdir}/{saveFoldName}"
-    dataDirPath = getFolderAbsPath(sys.argv)
+    # dataDirPath = getFolderAbsPath(sys.argv)
+    csv_name = f"imgQRInfo-{datetime.datetime.now().strftime('%Y%m%d-%H:%M:%S')}.csv"
     saveDirName = "output"
     saveDirdPath = f"{os.path.curdir}/{saveDirName}"
-    
     # make save Directory
     if not os.path.exists(saveDirdPath):
         os.makedirs(saveDirdPath)
