@@ -24,6 +24,20 @@ def main():
     img_name = os.path.basename(img_path)
     num, res = decodeQR(decorder, img_path)
     convertInfo2CSV(img_name, num, res, saveDirdPath, csv_name)
+def getFiles(dirPath, extension):
+    jpegRobust = ["jpeg", "jpg", "JPEG", "JPG"]
+    pngRobust = ["png", "PNG"]
+    res = []
+    if extension in jpegRobust:
+        for e in jpegRobust:
+            for file in glob(f"{dirPath}/*.{e}"):
+                res.append(file)
+    
+    elif extension in pngRobust:
+        for e in pngRobust:
+            for file in glob(f"{dirPath}/*.{e}"):
+                res.append(file)
+    return res    
     
 def getDirAbsPath(cmd_arg):
     # check command line arguments
