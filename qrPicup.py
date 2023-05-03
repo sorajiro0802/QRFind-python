@@ -16,6 +16,10 @@ def main():
     saveDirName = "output"
     saveDirdPath = f"{os.path.curdir}/{saveDirName}"
     
+    # make save Directory
+    if not os.path.exists(saveDirdPath):
+        os.makedirs(saveDirdPath)
+
     img_path = "./data/mQRArray_rotated.png" #* tmp img
     # select QR or microQR
     decorder = pb.FactoryFiducial(np.uint8).microqr()
