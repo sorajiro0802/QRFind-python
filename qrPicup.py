@@ -12,6 +12,9 @@ def main():
     print(dataFoldPath)
     saveFoldName = "output"
     saveFoldPath = f"{os.path.curdir}/{saveFoldName}"
+    dataDirPath = getFolderAbsPath(sys.argv)
+    saveDirName = "output"
+    saveDirdPath = f"{os.path.curdir}/{saveDirName}"
     
     img_path = "./data/mQRArray_rotated.png" #* tmp img
     # select QR or microQR
