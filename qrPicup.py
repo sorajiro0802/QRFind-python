@@ -36,7 +36,6 @@ def getFolderAbsPath(cmd_arg):
         else:
             raise NotADirectoryError
     else:
-        raise ValueError("too many commandLine argumants")
         raise ValueError("invalid commandLine argumant length")
 
 def decodeQR(decorder, img_path) -> dict:
