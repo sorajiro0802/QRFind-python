@@ -6,6 +6,7 @@ from glob import glob
 
 import numpy as np
 import pyboof as pb
+import cv2
 
 def main():
     #* feat add parser
@@ -22,8 +23,21 @@ def main():
         print(f"Processing decord :\t{os.path.basename(img_file)}")
         img_name = os.path.basename(img_file)
         num, res = decodeQR(decorder, img_file)
-        convertInfo2CSV(img_name, num, res, dataDirPath, csv_name)
+        # convertInfo2CSV(img_name, num, res, dataDirPath, csv_name)
+    
 
+def drawShapeLine(img_path, points):
+    color = (255, 0, 0)
+    file_name = os.path.basename(img_path)
+    dir_name = os.path.dirname(img_path)
+    save_dir = f"{dir_name}/detection/"
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
+    img = cv2.imread(img_path)
+    
+    for point in points:
+        img = cv2.polylines(img, [np.array(point)], True, color, 5)
+    cv2.imwrite(f"{save_dir}/{file_name}", img)
 
 def getFiles(dirPath, extension):
     jpegRobust = ["jpeg", "jpg", "JPEG", "JPG"]
@@ -57,12 +71,20 @@ def decodeQR(decorder, img_path) -> dict:
     decorder.detect(image)
     num = len(decorder.detections)
     res = {}
+    plist = []
     for code in decorder.detections:
         info = code.message
         points = code.bounds.convert_tuple()
         # convert float num of points to int
         points = [(int(i), int(j)) for i, j in points]
+        plist.append(points)
         res[info] = points
+
+    # save new image
+    file_name = os.path.basename(img_path)
+    dir_name = os.path.dirname(img_path)
+    save_dir = f"{dir_name}/"
+    drawShapeLine(f"{save_dir}/{file_name}", plist)
     # return dict ex.( {info : [ponts]} )
     return num, res
     
@@ -80,7 +102,7 @@ def convertInfo2CSV(img_name, num, dict_, save_dir, save_name):
             for x, y in points:
                 writeLine.append(x)
                 writeLine.append(y)
-        print(f"\tFound:\t{writeLine}")
+        # print(f"\tFound:\t{writeLine}")
         writer.writerow(writeLine)
 
 def dirname(path):
