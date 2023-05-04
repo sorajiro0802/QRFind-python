@@ -4,3 +4,4 @@ venv
 microQR_*
 .vscode
 *.csv
+detection
