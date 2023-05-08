@@ -23,7 +23,7 @@ def main():
         print(f"Processing decord :\t{os.path.basename(img_file)}")
         img_name = os.path.basename(img_file)
         num, res = decodeQR(decorder, img_file)
-        # convertInfo2CSV(img_name, num, res, dataDirPath, csv_name)
+        convertInfo2CSV(img_name, num, res, dataDirPath, csv_name)
     
 
 def drawShapeLine(img_path, points):
@@ -90,7 +90,7 @@ def decodeQR(decorder, img_path) -> dict:
     
 def convertInfo2CSV(img_name, num, dict_, save_dir, save_name):
     # format : <imgFileName>, <number of detected QRCode>, (x0,y0),(x1,y1),(x2,y2),(x3,y3), <decode string>, ...
-    save_path = f"{save_dir}/{save_name}"
+    save_path = f"{save_dir}/detection/{save_name}"
     with open(save_path, "a") as f:
         writer = csv.writer(f)
         writeLine = []
