@@ -15,6 +15,7 @@ def main():
     files = getFiles(dataDirPath, imgFileExtension)
     dataDirName = dirname(dataDirPath)
     csv_name = f"findmQR-{dataDirName}-{datetime.datetime.now().strftime('%Y%m%d-%H:%M:%S')}.csv"
+    save_path = f"{dataDirPath}/detection/{csv_name}"
 
     decorder = pb.FactoryFiducial(np.uint8).microqr()
     # decorder = pb.FactoryFiducial(np.uint8).qrcode()
@@ -23,7 +24,7 @@ def main():
         print(f"Processing decord :\t{os.path.basename(img_file)}")
         img_name = os.path.basename(img_file)
         num, res = decodeQR(decorder, img_file)
-        convertInfo2CSV(img_name, num, res, dataDirPath, csv_name)
+        convertInfo2CSV(img_name, num, res, save_path)
     
 
 def drawShapeLine(img_path, points):
@@ -88,9 +89,8 @@ def decodeQR(decorder, img_path) -> dict:
     # return dict ex.( {info : [ponts]} )
     return num, res
     
-def convertInfo2CSV(img_name, num, dict_, save_dir, save_name):
+def convertInfo2CSV(img_name, num, dict_, save_path):
     # format : <imgFileName>, <number of detected QRCode>, (x0,y0),(x1,y1),(x2,y2),(x3,y3), <decode string>, ...
-    save_path = f"{save_dir}/detection/{save_name}"
     with open(save_path, "a") as f:
         writer = csv.writer(f)
         writeLine = []
