@@ -14,7 +14,7 @@ def main():
     imgFileExtension = "png"
     files = getFiles(dataDirPath, imgFileExtension)
     dataDirName = dirname(dataDirPath)
-    csv_name = f"findmQR-{dataDirName}-{datetime.datetime.now().strftime('%Y%m%d-%H:%M:%S')}.csv"
+    csv_name = f"findmQR-{dataDirName}-{datetime.datetime.now().strftime('%Y%m%d-%H%M%S')}.csv"
     save_path = f"{dataDirPath}/detection/{csv_name}"
 
     decorder = pb.FactoryFiducial(np.uint8).microqr()
